@@ -1,9 +1,4 @@
-#include <stdlib.h>
-#include <limits.h>
-#include <stdio.h>
-#include <time.h>
-#include <sgx_urts.h>
-#include <sys/stat.h>
+/// Dump Utils
 
 void print_hex(uint8_t buf[], int x) {
     int i;
@@ -15,6 +10,7 @@ void print_hex(uint8_t buf[], int x) {
     printf("\n");
 }
 
+// Report Body
 void dump_report_body(sgx_report_body_t& report_body) {
 	fprintf(stdout, "###report body: ");
 
@@ -49,6 +45,7 @@ void dump_report_body(sgx_report_body_t& report_body) {
     fprintf(stdout, "\n");
 }
 
+// Report
 void dump_report(sgx_report_t *report) {
 	fprintf(stdout, "#report: ");
 	fprintf(stdout, "mac: ");
@@ -61,6 +58,7 @@ void dump_report(sgx_report_t *report) {
     fprintf(stdout, "\n");
 }
 
+// Quote
 void dump_quote(sgx_quote_t* quote) {
 	fprintf(stdout, "quote: ");
 
@@ -73,7 +71,7 @@ void dump_quote(sgx_quote_t* quote) {
 	fprintf(stdout, "basename: ");
 	print_hex(quote->basename.name, 32);
 	fprintf(stdout, "signature_len: %d\n", quote->signature_len);  
-	fprintf(stdout, "xeid: %d", quote->xeid);  
+	fprintf(stdout, "signature: ");  
 	print_hex(quote->signature, 4);
 
     dump_report_body(quote->report_body);
